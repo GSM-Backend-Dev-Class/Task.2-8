@@ -20,7 +20,7 @@ public class SearchOrderServiceImpl implements SearchOrderService {
     private final OrderDataMapper orderDataMapper;
 
     @Override
-    public SearchOrderResponse execute(Long userId, int minPrice, int maxPrice, String address, String itemName, int page, int size) {
+    public SearchOrderResponse execute(Long userId, Integer minPrice, Integer maxPrice, String address, String itemName, int page, int size) {
         Page<OrderJpaEntity> result = orderJpaRepository.searchOrders(userId, minPrice, maxPrice, address, itemName, PageRequest.of(page, size));
         return new SearchOrderResponse(
                 result.getTotalPages(),
