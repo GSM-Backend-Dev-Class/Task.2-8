@@ -7,10 +7,7 @@ import com.gsm._8th.class4.backend.task28.domain.order.service.SearchOrderServic
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/order")
@@ -34,9 +31,9 @@ public class OrderController {
                 .body(searchOrderService.execute(userId, minPrice, maxPrice, address, itemName, page, size));
     }
 
-    @GetMapping("/detail")
+    @GetMapping("/{orderId}")
     public ResponseEntity<OrderDto> findOrderById(
-            @RequestParam(value = "orderId") Long orderId
+            @PathVariable(value = "orderId") Long orderId
     ) {
         return ResponseEntity.status(HttpStatus.OK).body(findOrderByIdService.execute(orderId));
     }
