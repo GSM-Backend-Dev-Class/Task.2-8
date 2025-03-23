@@ -46,8 +46,8 @@ public interface OrderJpaRepository extends JpaRepository<OrderJpaEntity, Long> 
                     "WHERE (:user_id IS NULL OR o.user.id = :user_id) " +
                     "AND (:min_price IS NULL OR o.price >= :min_price) " +
                     "AND (:max_price IS NULL OR o.price <= :max_price) " +
-                    "AND (:address IS NULL OR o.address LIKE %:address%) " +
-                    "AND (:item_name IS NULL OR i.name LIKE %:item_name%)"
+                    "AND (:address IS NULL OR o.address LIKE CONCAT('%', :address, '%')) " +
+                    "AND (:item_name IS NULL OR i.name LIKE CONCAT('%', :item_name, '%'))"
     )
     Page<OrderJpaEntity> searchOrders(
             @Param("user_id") Long userId,
