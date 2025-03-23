@@ -22,20 +22,21 @@ public class OrderController {
 
     @GetMapping("/search")
     public ResponseEntity<SearchOrderResponse> searchOrder(
-            @RequestParam("userId") Long userId,
-            @RequestParam("minPrice") int minPrice,
-            @RequestParam("maxPrice") int maxPrice,
-            @RequestParam("address") String address,
-            @RequestParam("itemName") String itemName,
-            @RequestParam("page") int page,
-            @RequestParam("size") int size
+            @RequestParam(value = "userId", required = false) Long userId,
+            @RequestParam(value = "minPrice", required = false) Integer minPrice,
+            @RequestParam(value = "maxPrice", required = false) Integer maxPrice,
+            @RequestParam(value = "address", required = false) String address,
+            @RequestParam(value = "itemName", required = false) String itemName,
+            @RequestParam(value = "page", required = false, defaultValue = "0") int page,
+            @RequestParam(value = "size", required = false, defaultValue = "10") int size
     ) {
-        return ResponseEntity.status(HttpStatus.OK).body(searchOrderService.execute(userId, minPrice, maxPrice, address, itemName, page, size));
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(searchOrderService.execute(userId, minPrice, maxPrice, address, itemName, page, size));
     }
 
-    @GetMapping("/{orderId}")
+    @GetMapping("/detail")
     public ResponseEntity<OrderDto> findOrderById(
-            @RequestParam("orderId") Long orderId
+            @RequestParam(value = "orderId") Long orderId
     ) {
         return ResponseEntity.status(HttpStatus.OK).body(findOrderByIdService.execute(orderId));
     }

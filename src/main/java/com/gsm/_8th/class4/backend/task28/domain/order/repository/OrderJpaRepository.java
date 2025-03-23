@@ -43,16 +43,16 @@ public interface OrderJpaRepository extends JpaRepository<OrderJpaEntity, Long> 
             "SELECT DISTINCT o FROM OrderJpaEntity o " +
                     "JOIN o.orderItems oi " +
                     "JOIN oi.item i " +
-                    "WHERE o.user.id = :user_id " +
-                    "AND o.price >= :min_price " +
-                    "AND o.price <= :max_price " +
-                    "AND o.address LIKE %:address% " +
-                    "AND i.name LIKE %:item_name%"
+                    "WHERE (:user_id IS NULL OR o.user.id = :user_id) " +
+                    "AND (:min_price IS NULL OR o.price >= :min_price) " +
+                    "AND (:max_price IS NULL OR o.price <= :max_price) " +
+                    "AND (:address IS NULL OR o.address LIKE %:address%) " +
+                    "AND (:item_name IS NULL OR i.name LIKE %:item_name%)"
     )
     Page<OrderJpaEntity> searchOrders(
             @Param("user_id") Long userId,
-            @Param("min_price") int minPrice,
-            @Param("max_price") int maxPrice,
+            @Param("min_price") Integer minPrice,
+            @Param("max_price") Integer maxPrice,
             @Param("address") String address,
             @Param("item_name") String itemName,
             Pageable pageable
