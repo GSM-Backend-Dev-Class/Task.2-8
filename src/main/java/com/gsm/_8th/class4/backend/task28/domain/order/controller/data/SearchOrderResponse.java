@@ -5,6 +5,6 @@ import java.util.List;
 public record SearchOrderResponse(
         int totalPage,
         long totalElements,
-        List<SearchOrderDto> searchOrders
+        List<OrderDto> searchOrders
 ) {
 }
