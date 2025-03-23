@@ -6,7 +6,7 @@ import com.gsm._8th.class4.backend.task28.domain.user.data.UserDto;
 import java.util.List;
 import java.util.UUID;
 
-public record SearchOrderDto(
+public record OrderDto(
         Long id,
         UUID uuid,
         UserDto user,
