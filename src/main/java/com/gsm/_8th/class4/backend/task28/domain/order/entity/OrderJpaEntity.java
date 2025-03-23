@@ -1,6 +1,5 @@
 package com.gsm._8th.class4.backend.task28.domain.order.entity;
 
-import com.gsm._8th.class4.backend.task28.domain.item.entity.ItemJpaEntity;
 import com.gsm._8th.class4.backend.task28.domain.orderItem.entity.OrderItemJpaEntity;
 import com.gsm._8th.class4.backend.task28.domain.user.entity.UserJpaEntity;
 import jakarta.persistence.*;
