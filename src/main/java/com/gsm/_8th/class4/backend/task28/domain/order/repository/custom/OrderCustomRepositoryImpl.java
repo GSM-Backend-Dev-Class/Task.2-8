@@ -48,8 +48,8 @@ public class OrderCustomRepositoryImpl implements OrderCustomRepository {
 
         List<OrderJpaEntity> results = queryFactory
                 .selectFrom(order)
-                .leftJoin(order.orderItems, orderItem)
-                .leftJoin(orderItem.item, item)
+                .leftJoin(order.orderItems, orderItem).fetchJoin()
+                .leftJoin(orderItem.item, item).fetchJoin()
                 .where(builder)
                 .distinct()
                 .offset(pageable.getOffset())
