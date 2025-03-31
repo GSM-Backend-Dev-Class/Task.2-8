@@ -28,24 +28,8 @@ public class OrderCustomRepositoryImpl implements OrderCustomRepository {
         QOrderJpaEntity order = QOrderJpaEntity.orderJpaEntity;
         QOrderItemJpaEntity orderItem = QOrderItemJpaEntity.orderItemJpaEntity;
         QItemJpaEntity item = QItemJpaEntity.itemJpaEntity;
-        BooleanBuilder builder = new BooleanBuilder();
 
-        if (userId != null) {
-            builder.and(order.user.id.eq(userId));
-        }
-        if (minPrice != null) {
-            builder.and(order.price.goe(minPrice));
-        }
-        if (maxPrice != null) {
-            builder.and(order.price.loe(maxPrice));
-        }
-        if (address != null) {
-            builder.and(order.address.contains(address));
-        }
-        if (itemName != null) {
-            builder.and(orderItem.item.name.contains(itemName));
-        }
-
+        BooleanBuilder builder = privateBooleanBuilder(userId, minPrice, maxPrice, address, itemName, order, orderItem);
         List<OrderJpaEntity> results = queryFactory
                 .selectFrom(order)
                 .leftJoin(order.orderItems, orderItem).fetchJoin()
@@ -66,4 +50,26 @@ public class OrderCustomRepositoryImpl implements OrderCustomRepository {
 
         return new PageImpl<>(results, pageable, total);
     }
+    private BooleanBuilder privateBooleanBuilder(Long userId, Integer minPrice, Integer maxPrice, String address, String itemName,
+                                                 QOrderJpaEntity order, QOrderItemJpaEntity orderItem) {
+        BooleanBuilder builder = new BooleanBuilder();
+        if (userId != null) {
+            builder.and(order.user.id.eq(userId));
+        }
+        if (minPrice != null) {
+            builder.and(order.price.goe(minPrice));
+        }
+        if (maxPrice != null) {
+            builder.and(order.price.loe(maxPrice));
+        }
+        if (address != null) {
+            builder.and(order.address.contains(address));
+        }
+        if (itemName != null) {
+            builder.and(orderItem.item.name.contains(itemName));
+        }
+
+        return builder;
+    }
+
 }
