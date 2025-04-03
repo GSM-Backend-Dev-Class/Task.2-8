@@ -32,6 +32,9 @@ dependencies {
     // QueryDSL
     implementation("com.querydsl:querydsl-jpa:5.1.0:jakarta")
     annotationProcessor("com.querydsl:querydsl-apt:5.1.0:jakarta")
+    annotationProcessor("jakarta.persistence:jakarta.persistence-api:3.1.0")
+    annotationProcessor("jakarta.annotation:jakarta.annotation-api:2.1.1")
+    implementation("jakarta.persistence:jakarta.persistence-api:3.1.0")
 
     // Lombok
     compileOnly("org.projectlombok:lombok")
