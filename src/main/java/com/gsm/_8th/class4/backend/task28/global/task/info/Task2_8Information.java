@@ -26,7 +26,7 @@ public class Task2_8Information {
         log.info("\033[32m과제: 2-8\033[0m");
         log.info("\033[32m요약: JPA N+1 문제 해결\033[0m");
         log.info("\033[33m과제 수행기간: 2025/03/24~2025/04/01\033[0m");
-        log.info("\033[35mNotion을 참고하여 과제를 수행해주세요: [URL]\033[0m");
+        log.info("\033[35mNotion을 참고하여 과제를 수행해주세요: https://amondbabaro.notion.site/2-8-2025-03-24-2025-04-01-1bf8f98f3310803caf6dece5e0aa50ac?pvs=74\033[0m");
         log.info("\033[31m과제를 수행하면서 궁금한 점이나 문제가 발생하면 언제든지 질문해주세요\033[0m");
         log.info("\033[31m과제를 완료하면 Discord 채널에 과제 완료 보고 부탁드립니다\033[0m");
         log.info("\033[36m언제나 화이팅입니다!\033[0m");
